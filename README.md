@@ -4,7 +4,7 @@ This is a companion repository for the Hashicorp [Provision and Manage Accounts 
 Control Tower Account Factory for Terraform
 tutorial](https://developer.hashicorp.com/terraform/tutorials/aws/aws-control-tower-aft).
 
-This repository contains boilerplate configuration for defining account
+This repository contains configuration for defining account
 customizations to use with the Account Factory for Terraform
 module. The README below and the template files in this repository were
 provided by AWS.
