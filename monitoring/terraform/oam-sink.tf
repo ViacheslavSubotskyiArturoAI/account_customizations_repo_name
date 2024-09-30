@@ -1,15 +1,18 @@
 data "aws_organizations_organization" "this" {}
 
-resource "awscc_oam_sink" "this" {
-  name = "Sink"
+resource "aws_oam_sink" "this" {
+  name = "CentralMonitoringSink"
+}
 
+resource "aws_oam_sink_policy" "this" {
+  sink_identifier = aws_oam_sink.this.id
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [{
       Effect    = "Allow"
       Principal = "*"
       Resource  = "*"
-      Action    = [
+      Action = [
         "oam:CreateLink",
         "oam:UpdateLink"
       ]
@@ -32,5 +35,5 @@ resource "awscc_oam_sink" "this" {
 }
 
 output "oam_sink" {
-  value = awscc_oam_sink.this
+  value = aws_oam_sink.this
 }
