@@ -34,6 +34,6 @@ resource "aws_oam_sink_policy" "this" {
   })
 }
 
-output "oam_sink" {
-  value = aws_oam_sink.this
+output "oam_sink_arn" {
+  value = aws_oam_sink.this.arn
 }
