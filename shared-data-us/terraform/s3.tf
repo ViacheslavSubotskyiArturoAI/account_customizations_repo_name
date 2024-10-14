@@ -23,7 +23,6 @@ resource "aws_s3_bucket_policy" "model_weights" {
 
 data "aws_iam_policy_document" "s3_bucket_model_weights" {
   statement {
-    principals = "*"
     actions = [
       "s3:GetLifecycleConfiguration",
       "s3:ListBucket",
