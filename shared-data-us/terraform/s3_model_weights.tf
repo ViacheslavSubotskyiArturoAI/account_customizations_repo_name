@@ -36,7 +36,7 @@ data "aws_iam_policy_document" "s3_bucket_model_weights" {
       "${aws_s3_bucket.model_weights.arn}/*",
     ]
     condition {
-      test     = "ForAnyValue:StringEquals"
+      test     = "ForAnyValue:StringLike"
       variable = "aws:PrincipalOrgPaths"
       values   = local.s3_model_weights_allowed_ro_principal_org_paths
     }
