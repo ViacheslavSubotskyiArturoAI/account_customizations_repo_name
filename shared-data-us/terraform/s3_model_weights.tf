@@ -1,9 +1,5 @@
-locals {
-  model_weights_bucket_name = "skynet-us-model-weights-${local.account_id}"
-}
-
 resource "aws_s3_bucket" "model_weights" {
-  bucket = local.model_weights_bucket_name
+  bucket = local.s3_model_weights_bucket_name
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "model_weights" {
