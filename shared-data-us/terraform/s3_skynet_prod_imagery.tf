@@ -1,9 +1,9 @@
-resource "aws_s3_bucket" "skynet_prod_execution_data_dump" {
-  bucket = local.s3_skynet_prod_execution_data_dump_bucket_name
+resource "aws_s3_bucket" "skynet_prod_imagery" {
+  bucket = local.s3_skynet_prod_imagery_bucket_name
 }
 
-resource "aws_s3_bucket_server_side_encryption_configuration" "skynet_prod_execution_data_dump" {
-  bucket = aws_s3_bucket.skynet_prod_execution_data_dump.id
+resource "aws_s3_bucket_server_side_encryption_configuration" "skynet_prod_imagery" {
+  bucket = aws_s3_bucket.skynet_prod_imagery.id
 
   rule {
     apply_server_side_encryption_by_default {
@@ -12,12 +12,12 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "skynet_prod_execu
   }
 }
 
-resource "aws_s3_bucket_policy" "skynet_prod_execution_data_dump" {
-  bucket = aws_s3_bucket.skynet_prod_execution_data_dump.id
-  policy = data.aws_iam_policy_document.s3_bucket_skynet_prod_execution_data_dump.json
+resource "aws_s3_bucket_policy" "skynet_prod_imagery" {
+  bucket = aws_s3_bucket.skynet_prod_imagery.id
+  policy = data.aws_iam_policy_document.s3_bucket_skynet_prod_imagery.json
 }
 
-data "aws_iam_policy_document" "s3_bucket_skynet_prod_execution_data_dump" {
+data "aws_iam_policy_document" "s3_bucket_skynet_prod_imagery" {
   statement {
     principals {
       type        = "AWS"
@@ -31,8 +31,8 @@ data "aws_iam_policy_document" "s3_bucket_skynet_prod_execution_data_dump" {
       "s3:GetBucketLocation"
     ]
     resources = [
-      aws_s3_bucket.skynet_prod_execution_data_dump.arn,
-      "${aws_s3_bucket.skynet_prod_execution_data_dump.arn}/*",
+      aws_s3_bucket.skynet_prod_imagery.arn,
+      "${aws_s3_bucket.skynet_prod_imagery.arn}/*",
     ]
     condition {
       test     = "StringEquals"
@@ -46,7 +46,7 @@ data "aws_iam_policy_document" "s3_bucket_skynet_prod_execution_data_dump" {
       identifiers = ["cloudfront.amazonaws.com"]
     }
     actions = ["s3:GetObject"]
-    resources = ["${aws_s3_bucket.skynet_prod_execution_data_dump.arn}/*"]
+    resources = ["${aws_s3_bucket.skynet_prod_imagery.arn}/*"]
     condition {
       test     = "StringEquals"
       variable = "AWS:SourceArn"
