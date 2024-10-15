@@ -21,7 +21,7 @@ data "aws_iam_policy_document" "s3_bucket_skynet_prod_execution_data_dump" {
   statement {
     principals {
       type        = "AWS"
-      identifiers = [local.s3_skynet_prod_execution_data_dump_allowed_rw_aws_principals_identifiers]
+      identifiers = local.s3_skynet_prod_execution_data_dump_allowed_rw_aws_principals_identifiers
     }
     actions = [
       "s3:PutObject",
