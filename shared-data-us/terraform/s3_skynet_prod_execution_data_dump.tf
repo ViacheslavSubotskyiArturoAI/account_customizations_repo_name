@@ -40,4 +40,17 @@ data "aws_iam_policy_document" "s3_bucket_skynet_prod_execution_data_dump" {
       values   = [local.org_id]
     }
   }
+  statement {
+    principals {
+      type        = "Service"
+      identifiers = "cloudfront.amazonaws.com"
+    }
+    actions = ["s3:GetObject"]
+    resources = ["${aws_s3_bucket.skynet_prod_execution_data_dump.arn}/*"]
+    condition {
+      test     = "StringEquals"
+      variable = "AWS:SourceArn"
+      values   = local.s3_skynet_prod_execution_data_dump_allowed_ro_cloudfront_source_arns
+    }
+  }
 }
