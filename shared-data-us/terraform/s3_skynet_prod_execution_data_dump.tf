@@ -54,3 +54,20 @@ data "aws_iam_policy_document" "s3_bucket_skynet_prod_execution_data_dump" {
     }
   }
 }
+
+### Replica
+resource "aws_s3_bucket" "skynet_prod_execution_data_dump_replica" {
+  provider = aws.us-east-2
+  bucket   = local.s3_skynet_prod_execution_data_dump_replica_bucket_name
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "skynet_prod_execution_data_dump_replica" {
+  provider = aws.us-east-2
+  bucket   = aws_s3_bucket.skynet_prod_execution_data_dump_replica.id
+
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm = "AES256"
+    }
+  }
+}
