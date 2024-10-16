@@ -5,6 +5,17 @@ data "aws_iam_policy_document" "tf_deploy_iam_access_policy" {
     actions   = ["iam:*"]
     resources = ["arn:aws:iam::${local.account_id}:role/${local.prefix}*"]
   }
+  statement {
+    effect    = "Allow"
+    actions   = [
+      "iam:CreateServiceLinkedRole",
+      "iam:GetRole",
+      "iam:DeleteServiceLinkedRole",
+      "iam:GetServiceLinkedRoleDeletionStatus",
+      "iam:TagRole"
+    ]
+    resources = ["arn:aws:iam::${local.account_id}:role/aws-service-role/replication.ecr.amazonaws.com/AWSServiceRoleForECRReplication"]
+  }
 }
 
 resource "aws_iam_role_policy" "tf_deploy_iam_access" {
