@@ -1,5 +1,5 @@
 module "skynet_mgmt_pipeline_bootstrap" {
-  source = "../_modules/skynet-mgmt-pipeline-bootstrap"
+  source = "../../_modules/skynet-mgmt-pipeline-bootstrap"
 
   environment                            = "test"
   environment_type                       = "lower"
