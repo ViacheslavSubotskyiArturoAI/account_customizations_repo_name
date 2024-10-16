@@ -7,6 +7,11 @@ resource "aws_dynamodb_table" "tf_state" {
     name = "LockID"
     type = "S"
   }
+
+  depends_on = [
+    aws_iam_role.codebuild_skynet_mgmt_pipeline_role.arn,
+    aws_iam_role.codebuild_skynet_inference_role.arn
+  ]
 }
 
 resource "aws_dynamodb_resource_policy" "tf_state" {
@@ -26,6 +31,6 @@ data "aws_iam_policy_document" "dynamodb_table_tf_state" {
       "dynamodb:PutItem",
       "dynamodb:DeleteItem",
     ]
-    resources = [aws_dynamodb_table.tf_state.arn, ]
+    resources = [aws_dynamodb_table.tf_state.arn]
   }
 }
