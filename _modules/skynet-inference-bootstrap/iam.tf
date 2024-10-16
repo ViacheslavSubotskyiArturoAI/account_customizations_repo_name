@@ -389,9 +389,8 @@ resource "aws_iam_role" "tf_deploy" {
   assume_role_policy = data.aws_iam_policy_document.tf_deploy_assume_role_policy.json
 }
 
-# Have no access to deal with it
-#resource "aws_iam_service_linked_role" "sagemaker_autoscalling" {
-#  count = var.deploy_account_wide_resources ? 1 : 0
-#
-#  aws_service_name = "sagemaker.application-autoscaling.amazonaws.com"
-#}
+resource "aws_iam_service_linked_role" "sagemaker_autoscalling" {
+  count = var.deploy_account_wide_resources ? 1 : 0
+
+  aws_service_name = "sagemaker.application-autoscaling.amazonaws.com"
+}
