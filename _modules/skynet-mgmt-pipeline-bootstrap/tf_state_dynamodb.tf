@@ -9,8 +9,8 @@ resource "aws_dynamodb_table" "tf_state" {
   }
 
   depends_on = [
-    aws_iam_role.codebuild_skynet_mgmt_pipeline_role.arn,
-    aws_iam_role.codebuild_skynet_inference_role.arn
+    aws_iam_role.codebuild_skynet_mgmt_pipeline_role,
+    aws_iam_role.codebuild_skynet_inference_role
   ]
 }
 
