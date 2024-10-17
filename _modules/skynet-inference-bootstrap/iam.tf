@@ -356,8 +356,8 @@ resource "aws_iam_role_policy" "tf_deploy_dynamodb_access" {
 data "aws_iam_policy_document" "tf_deploy_ec2_access_policy" {
   version = "2012-10-17"
   statement {
-    effect = "Allow"
-    actions = ["ec2:DescribeRegions"]
+    effect    = "Allow"
+    actions   = ["ec2:DescribeRegions"]
     resources = ["*"]
   }
 }

@@ -6,8 +6,8 @@ data "aws_iam_policy_document" "tf_deploy_iam_access_policy" {
     resources = ["arn:aws:iam::${local.account_id}:role/${local.prefix}*"]
   }
   statement {
-    effect    = "Allow"
-    actions   = [
+    effect = "Allow"
+    actions = [
       "iam:CreateServiceLinkedRole",
       "iam:GetRole",
       "iam:DeleteServiceLinkedRole",
@@ -145,8 +145,8 @@ resource "aws_iam_role_policy" "tf_deploy_cloudwatch_access" {
 data "aws_iam_policy_document" "tf_deploy_ec2_access_policy" {
   version = "2012-10-17"
   statement {
-    effect = "Allow"
-    actions = ["ec2:DescribeRegions"]
+    effect    = "Allow"
+    actions   = ["ec2:DescribeRegions"]
     resources = ["*"]
   }
 }
