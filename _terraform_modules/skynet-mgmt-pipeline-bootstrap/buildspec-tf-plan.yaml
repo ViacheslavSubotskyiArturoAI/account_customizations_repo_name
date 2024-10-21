@@ -1,0 +1,25 @@
+version: 0.2
+
+env:
+  variables:
+    TF_VERSION: "1.9.6"
+
+phases:
+
+  pre_build:
+    commands: 
+      - "curl -s -qL -o terraform.zip https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip"
+      - unzip -o terraform.zip
+      - sudo mv terraform /bin
+      - rm terraform.zip
+      - terraform version
+
+  build:
+    commands:
+      - cd "${TF_SKYNET_MGMT_PIPELINE_WORK_DIR}"
+      - terraform init
+      - terraform plan -out terraform.tfplan
+
+artifacts:
+  files:
+    - '**/terraform.tfplan'

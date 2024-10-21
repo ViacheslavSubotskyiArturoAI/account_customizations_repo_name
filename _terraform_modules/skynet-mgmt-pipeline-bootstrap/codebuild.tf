@@ -24,7 +24,7 @@ resource "aws_codebuild_project" "tf_plan" {
   }
 
   source {
-    buildspec           = local.codebuild_mgmt_pipeline_tf_plan_buildspec
+    buildspec           = file("${path.module}/buildspec-tf-plan.yaml")
     insecure_ssl        = "false"
     report_build_status = "false"
     type                = "CODEPIPELINE"
@@ -59,7 +59,7 @@ resource "aws_codebuild_project" "tf_apply" {
   }
 
   source {
-    buildspec           = local.codebuild_mgmt_pipeline_tf_apply_buildspec
+    buildspec           = file("${path.module}/buildspec-tf-apply.yaml")
     insecure_ssl        = "false"
     report_build_status = "false"
     type                = "CODEPIPELINE"

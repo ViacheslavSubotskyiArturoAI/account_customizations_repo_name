@@ -22,9 +22,7 @@ locals {
   codepipeline_prefix         = "${local.prefix}-codepipeline"
   codepipeline_s3_bucket_name = "${local.codepipeline_prefix}-${local.account_id}"
 
-  codebuild_mgmt_pipeline_tf_plan_buildspec  = "modules/02-mgmt-pipeline/buildspec-mgmt-pipeline-tf-plan.yaml"
-  codebuild_mgmt_pipeline_tf_apply_buildspec = "modules/02-mgmt-pipeline/buildspec-mgmt-pipeline-tf-apply.yaml"
-  codebuild_mgmt_pipeline_work_dir           = "env/${var.environment_type}/${var.environment}/${local.region}/02-mgmt-pipeline"
+  codebuild_mgmt_pipeline_work_dir = "env/${var.environment_type}/${var.environment}/${local.region}/mgmt-pipeline"
 
   codebuild_project = {
     tf_plan  = "${local.prefix}-mgmt-pipeline-tf-plan"
