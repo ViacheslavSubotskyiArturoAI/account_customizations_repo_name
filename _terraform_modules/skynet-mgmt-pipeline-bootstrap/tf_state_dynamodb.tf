@@ -1,8 +1,7 @@
 resource "aws_dynamodb_table" "tf_state" {
-  name           = local.tf_state_dynamodb_table_name
-  read_capacity  = 5
-  write_capacity = 5
-  hash_key       = "LockID"
+  name         = local.tf_state_dynamodb_table_name
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "LockID"
   attribute {
     name = "LockID"
     type = "S"
